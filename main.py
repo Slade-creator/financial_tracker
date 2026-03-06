@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
-from app.routers import reports
+from routers import reports
 from config import get_settings
 
 logging.basicConfig(level=logging.DEBUG if get_settings().debug else logging.INFO,
