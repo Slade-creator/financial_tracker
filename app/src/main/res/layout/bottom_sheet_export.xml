@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvExportTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Export Financial Data"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvExportSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose your export format and options"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Export Format Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Export Format"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="12dp" />
+
+    <RadioGroup
+        android:id="@+id/rgExportFormat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/rbCsv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CSV (Spreadsheet)"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Best for Excel, Google Sheets, and data analysis"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingStart="40dp"
+            android:paddingEnd="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <RadioButton
+            android:id="@+id/rbPdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PDF (Document)"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Professional reports with charts and formatting"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingStart="40dp"
+            android:paddingEnd="8dp" />
+
+        <RadioButton
+            android:id="@+id/rbAiReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AI-Powered Report (PDF)"
+            android:textSize="14sp"
+            android:padding="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Professional reports from AI"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingStart="40dp"
+            android:paddingEnd="8dp" />
+
+    </RadioGroup>
+
+    <!-- Export Options Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Include Summary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="12dp" />
+
+    <RadioGroup
+        android:id="@+id/rgExportOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <RadioButton
+            android:id="@+id/rbWithSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="With Summary Statistics"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+        <RadioButton
+            android:id="@+id/rbTransactionsOnly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transactions Only"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+    </RadioGroup>
+
+    <!-- Export Info -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#E3F2FD"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="8dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_dialog_info"
+                android:layout_marginEnd="12dp"
+                app:tint="#2196F3" />
+
+            <TextView
+                android:id="@+id/tvExportInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Export information will appear here"
+                android:textSize="13sp"
+                android:textColor="#1976D2" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Export Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExport"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Export and Share"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_menu_share"
+        app:iconGravity="textStart"
+        app:cornerRadius="8dp" />
+
+</LinearLayout>

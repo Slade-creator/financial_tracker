@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_security_settings.xml
+    Include this inside the SECURITY section of fragment_settings.xml:
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/securitySettingsContainer"
+            android:name="com.studentassoc.financialtracker.View.SecuritySettingsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    Or copy the inner card directly into fragment_settings.xml.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="@android:drawable/divider_horizontal_bright"
+        android:showDividers="middle">
+
+        <!-- ─── App Lock toggle ──────────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_secure"
+                android:layout_marginEnd="16dp"
+                app:tint="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_app_lock"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_app_lock_sub"
+                    android:textSize="13sp"
+                    android:textColor="#666666" />
+            </LinearLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchAppLock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ─── Biometric toggle ─────────────────────────────────────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_fingerprint"
+                android:layout_marginEnd="16dp"
+                app:tint="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_biometric"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:id="@+id/tvBiometricStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_biometric_sub"
+                    android:textSize="13sp"
+                    android:textColor="#666666" />
+            </LinearLayout>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchBiometric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ─── Auto-lock timeout ────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/layoutAutoLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_lock_idle_alarm"
+                android:layout_marginEnd="16dp"
+                app:tint="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_auto_lock"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+                <Spinner
+                    android:id="@+id/spinnerAutoLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ─── Setup PIN ────────────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/layoutSetupPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_add"
+                android:layout_marginEnd="16dp"
+                app:tint="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_setup_pin"
+                    android:textSize="16sp"
+                    android:textColor="#333333" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_setup_pin_sub"
+                    android:textSize="13sp"
+                    android:textColor="#666666" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@android:drawable/arrow_down_float"
+                app:tint="#999999" />
+        </LinearLayout>
+
+        <!-- ─── Change PIN ───────────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/layoutChangePin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_edit"
+                android:layout_marginEnd="16dp"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/setting_change_pin"
+                android:textSize="16sp"
+                android:textColor="#333333" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@android:drawable/arrow_down_float"
+                app:tint="#999999" />
+        </LinearLayout>
+
+        <!-- ─── Remove PIN ───────────────────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/layoutRemovePin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:layout_marginEnd="16dp"
+                app:tint="@android:color/holo_red_dark" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_remove_pin"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_remove_pin_sub"
+                    android:textSize="13sp"
+                    android:textColor="#666666" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

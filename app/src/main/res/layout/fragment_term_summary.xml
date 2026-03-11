@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment_term_summary.xml - Phase 3C: Term Summary -->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Date Range Selection Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Date Range"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:paddingBottom="12dp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupTermPresets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleLine="false"
+                    app:singleSelection="true"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:layout_marginBottom="12dp">
+
+                    <Button
+                        android:id="@+id/btnSelectStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Start Date"
+                        android:layout_marginEnd="4dp"
+                        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <Button
+                        android:id="@+id/btnSelectEndDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="End Date"
+                        android:layout_marginStart="4dp"
+                        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDateRange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jan 1, 2026 - Jan 31, 2026"
+                    android:textSize="14sp"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:paddingBottom="16dp"/>
+
+                <Button
+                    android:id="@+id/btnGenerateReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generate Report"
+                    style="@style/Widget.Material3.Button"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Summary Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedPeriod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Period: 31 days"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Income"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTermIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:paddingBottom="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Expenses"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTermExpenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:paddingBottom="16dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginVertical="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Net Balance"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvTermBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:paddingBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvTermTransactionCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 transactions"
+                    android:textSize="14sp"
+                    android:textColor="#666666"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Category Breakdown Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/layoutCategoryBreakdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category Breakdown"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:paddingBottom="12dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCategoryBreakdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── AI REPORT BUTTON ── -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardAiReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/primary"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI Powered Report"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tvAiReportHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Analyse this period with AI"
+                        android:textSize="12sp"
+                        android:textColor="#BBDEFB"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAiReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:text="Generate"
+                    android:textColor="@color/primary"
+                    android:textSize="13sp"
+                    app:backgroundTint="@android:color/white"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- No Data Layout -->
+        <LinearLayout
+            android:id="@+id/layoutNoData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="48dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📈"
+                android:textSize="64sp"
+                android:paddingBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No data for selected period"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#666666"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Try a different date range or add transactions"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

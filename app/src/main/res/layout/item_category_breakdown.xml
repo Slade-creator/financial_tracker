@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_category_breakdown.xml - Category breakdown list item -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="1dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Category Name and Amount Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvCategoryName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Transport"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/tvCategoryAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="K 1,500.00"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"/>
+        </LinearLayout>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginBottom="8dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressTint="@color/primary"
+            android:progress="45"/>
+
+        <!-- Percentage and Transaction Count Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCategoryPercentage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="45.5% of total"
+                android:textSize="12sp"
+                android:textColor="#666666"/>
+
+            <TextView
+                android:id="@+id/tvTransactionCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12 transactions"
+                android:textSize="12sp"
+                android:textColor="#999999"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

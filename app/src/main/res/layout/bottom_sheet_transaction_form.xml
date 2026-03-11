@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bottom_sheet_transaction_form.xml - Add/Edit transaction form -->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Bottom Sheet Title -->
+        <TextView
+            android:id="@+id/tvBottomSheetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Transaction"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingBottom="24dp"/>
+
+        <!-- Transaction Type Toggle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction Type"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroupTransactionType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:singleSelection="true"
+            app:checkedButton="@id/btnTypeIncome">
+
+            <Button
+                android:id="@+id/btnTypeIncome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Income"
+                style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+            <Button
+                android:id="@+id/btnTypeExpense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Expense"
+                style="@style/Widget.Material3.Button.OutlinedButton"/>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <!-- Amount -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount (Kwacha)"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Member Name (visible for INCOME only) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilMemberName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Member Name"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMemberName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Category -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_marginBottom="16dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/acCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Payment Method -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Payment Method"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_marginBottom="16dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/acPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Transaction Date -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Transaction Date (YYYY-MM-DD)"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTransactionDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:drawableEnd="@android:drawable/ic_menu_my_calendar"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Notes -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Notes (Optional)"
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:maxLines="4"
+                android:gravity="top|start"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Transaction"
+            android:textSize="16sp"
+            android:padding="16dp"
+            style="@style/Widget.Material3.Button"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Week Navigation Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvWeekLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Week of Jan 15 - Jan 21"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvWeekDates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="January 15, 2026 to January 21, 2026"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="16dp"/>
+
+                <!-- Navigation Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnPreviousWeek"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="← Previous"
+                        android:layout_marginEnd="4dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+                    <Button
+                        android:id="@+id/btnCurrentWeek"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="This Week"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        style="@style/Widget.Material3.Button.TonalButton"/>
+
+                    <Button
+                        android:id="@+id/btnNextWeek"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Next →"
+                        android:layout_marginStart="4dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Weekly Summary Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Income"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvWeeklyIncome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:paddingBottom="8dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progressIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="16dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:progressTint="@android:color/holo_green_dark"
+                    android:progress="75"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Expenses"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvWeeklyExpenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:paddingBottom="8dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progressExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginBottom="16dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:progressTint="@android:color/holo_red_dark"
+                    android:progress="50"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginVertical="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Net Balance"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:paddingBottom="4dp"/>
+
+                <TextView
+                    android:id="@+id/tvWeeklyBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K 0.00"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:paddingBottom="8dp"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Statistics Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Week Statistics"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:paddingBottom="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Transactions:"
+                        android:textSize="14sp"
+                        android:textColor="#666666"/>
+
+                    <TextView
+                        android:id="@+id/tvTransactionCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 transactions this week"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Savings Rate:"
+                        android:textSize="14sp"
+                        android:textColor="#666666"/>
+
+                    <TextView
+                        android:id="@+id/tvSavingsRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0%"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/holo_green_dark"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ── AI REPORT BUTTON ── -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardAiReport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/primary"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI Powered Report"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tvAiReportHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Analyse this week with AI"
+                        android:textSize="12sp"
+                        android:textColor="#BBDEFB"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAiReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:text="Generate"
+                    android:textColor="@color/primary"
+                    android:textSize="13sp"
+                    app:backgroundTint="@android:color/white"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- No Data Layout -->
+        <LinearLayout
+            android:id="@+id/layoutNoData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="48dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📊"
+                android:textSize="64sp"
+                android:paddingBottom="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No transactions for this week"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#666666"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Try selecting a different week"
+                android:textSize="14sp"
+                android:textColor="#999999"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_settings.xml
+    Settings UI for the Financial Tracker app
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="88dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/primary"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Customize your app preferences"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:alpha="0.9"/>
+        </LinearLayout>
+
+        <!-- General Settings Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GENERAL"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="@android:drawable/divider_horizontal_bright"
+                android:showDividers="middle">
+
+                <!-- Currency Setting -->
+                <LinearLayout
+                    android:id="@+id/settingCurrency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_currency"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Currency Symbol"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:id="@+id/tvCurrentCurrency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="K (Zambian Kwacha)"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+
+                <!-- Date Format Setting -->
+                <LinearLayout
+                    android:id="@+id/settingDateFormat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date Format"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:id="@+id/tvCurrentDateFormat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="YYYY-MM-DD"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Security Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SECURITY"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="@android:drawable/divider_horizontal_bright"
+                android:showDividers="middle">
+
+                <!-- App Lock toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_secure"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="App Lock"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Require authentication to open the app"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchAppLock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Biometric toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_fingerprint"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fingerprint"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:id="@+id/tvBiometricStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Use biometric authentication"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchBiometric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Auto-lock timeout -->
+                <LinearLayout
+                    android:id="@+id/layoutAutoLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="TODO"
+                        android:src="@android:drawable/ic_lock_idle_alarm"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Auto-lock after"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerAutoLock"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Setup PIN (visible when no PIN set) -->
+                <LinearLayout
+                    android:id="@+id/layoutSetupPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_add"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Set Up PIN"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Create a PIN to enable app lock"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+
+                <!-- Change PIN (visible when PIN is set) -->
+                <LinearLayout
+                    android:id="@+id/layoutChangePin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Change PIN"
+                        android:textSize="16sp"
+                        android:textColor="#333333"/>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+
+                <!-- Remove PIN (visible when PIN is set) -->
+                <LinearLayout
+                    android:id="@+id/layoutRemovePin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_delete"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@android:color/holo_red_dark"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Remove PIN"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/holo_red_dark"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="This will also disable app lock"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Data Management Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATA MANAGEMENT"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="@android:drawable/divider_horizontal_bright"
+                android:showDividers="middle">
+
+                <!-- Clear Cache -->
+                <LinearLayout
+                    android:id="@+id/settingClearCache"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_delete"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Cache"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Free up storage space"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Export All Data -->
+                <LinearLayout
+                    android:id="@+id/settingExportAllData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_export"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Export All Data"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Download complete database"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Delete All Data -->
+                <LinearLayout
+                    android:id="@+id/settingDeleteAllData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_delete"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@android:color/holo_red_dark"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delete All Data"
+                            android:textSize="16sp"
+                            android:textColor="@android:color/holo_red_dark"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Permanently remove all transactions"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- About Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ABOUT"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="@android:drawable/divider_horizontal_bright"
+                android:showDividers="middle">
+
+                <!-- App Version -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_dialog_info"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="App Version"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:id="@+id/tvAppVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.0.0"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Contact Developer -->
+                <LinearLayout
+                    android:id="@+id/settingContactDeveloper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_dialog_email"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contact Developer"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Report issues or request access"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+
+                <!-- Privacy Policy -->
+                <LinearLayout
+                    android:id="@+id/settingPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_info_details"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Privacy Policy"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="How we handle your data"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+
+                <!-- Terms of Service -->
+                <LinearLayout
+                    android:id="@+id/settingTermsOfService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@android:drawable/ic_menu_info_details"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/primary"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terms of Service"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Usage terms and conditions"
+                            android:textSize="14sp"
+                            android:textColor="#666666"/>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="#999999"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

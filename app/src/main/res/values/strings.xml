@@ -1,0 +1,138 @@
+<resources>
+
+    <string-array name="payment_methods">
+        <item>Cash</item>
+        <item>Mobile Money</item>
+    </string-array>
+
+    <string-array name="income_categories">
+        <item>Membership Fee</item>
+        <item>T-Shirt Sales</item>
+        <item>Other Contribution</item>
+    </string-array>
+
+    <string-array name="expense_categories">
+        <item>Transport</item>
+        <item>Food</item>
+        <item>Supplies</item>
+        <item>Event Costs</item>
+        <item>Administrative</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Error Messages (from specification) -->
+    <string name="error_amount_positive">Amount must be greater than zero</string>
+    <string name="error_invalid_transaction_type">Invalid transaction type</string>
+    <string name="error_invalid_payment_method">Invalid payment method</string>
+    <string name="error_member_name_required">Member name is required for income transactions</string>
+    <string name="error_date_future">Transaction date cannot be in the future</string>
+    <string name="error_category_required">Category is required</string>
+    <string name="error_invalid_approval_status">Invalid approval status</string>
+
+    <!-- Labels -->
+    <string name="label_amount">Amount</string>
+    <string name="label_member_name">Member Name</string>
+    <string name="label_category">Category</string>
+    <string name="label_payment_method">Payment Method</string>
+    <string name="label_transaction_date">Transaction Date</string>
+    <string name="label_notes">Notes (Optional)</string>
+
+    <!-- Buttons -->
+    <string name="btn_save">Save Transaction</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_add_transaction">Add Transaction</string>
+
+    <!-- Summary -->
+    <string name="label_total_income">Total Income</string>
+    <string name="label_total_expenses">Total Expenses</string>
+    <string name="label_current_balance">Current Balance</string>
+
+    <string name="app_name">financialtracker</string>
+    <string name="financial_summary">Financial Summary</string>
+    <string name="income">Income</string>
+    <string name="k0_00">K0.00</string>
+    <string name="expenses">Expenses</string>
+    <string name="balance">Balance</string>
+    <string name="new_transaction">New Transaction</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="amount">Amount</string>
+    <string name="member_name">Member Name (Optional)</string>
+    <string name="category">Category</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="notes_optional">Notes (Optional)</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_transaction">Save Transaction</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="membership_fee">Membership Fee</string>
+    <string name="member_elton_chiwala">Elton chiwala</string>
+    <string name="_15_jan_2026">15 Jan, 2026</string>
+    <string name="cash">CASH</string>
+    <string name="member_label">Member: %1$s</string>
+    <string name="k_150_00">K 150.00</string>
+    <string name="mobile_money">Mobile Money</string>
+    <string name="_02_feb_2026_02_30_pm">02 Feb 2026, 02:30 PM</string>
+    <string name="status">Status</string>
+    <string name="approved">Approved</string>
+    <string name="notes">Notes</string>
+    <string name="annual_membership_renewal">Annual membership renewal</string>
+    <string name="record_information">Record Information</string>
+    <string name="created">Created</string>
+    <string name="last_modified">Last Modified</string>
+    <string name="backup_amp_sync"><![CDATA[Backup & Sync]]></string>
+    <string name="not_signed_in">Not signed in</string>
+    <string name="no_backups_yet">No backups yet</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="backup_now">Backup Now</string>
+    <string name="restore_from_backup">Restore from Backup</string>
+    <string name="default_web_client_id">506033137606-bo4n1n7vqf4csb6e6elrru028jqqo9hl.apps.googleusercontent.com</string>
+
+    <string name="lock_message_pin">Enter your PIN to access your financial data</string>
+    <string name="lock_message_biometric">Use fingerprint or face to unlock</string>
+    <string name="hint_enter_pin">PIN</string>
+    <string name="btn_unlock">Unlock</string>
+    <string name="btn_use_biometric">Use Biometric</string>
+
+    <string name="failed_attempts_label">Failed attempts: %1$d / %2$d</string>
+    <string name="lockout_message">Too many failed attempts.\nTry again in %1$d:%2$02d</string>
+
+    <string name="biometric_prompt_title">Unlock Financial Tracker</string>
+    <string name="biometric_prompt_subtitle">Verify your identity</string>
+    <string name="biometric_failed">Authentication not recognised — try again</string>
+
+    <string name="setup_pin_title_new">Create a PIN</string>
+    <string name="setup_pin_subtitle_new">Your PIN protects access to your financial data. Use 4–6 digits.</string>
+    <string name="setup_pin_title_change">Change PIN</string>
+    <string name="setup_pin_subtitle_change">Enter a new PIN. It must be 4–6 digits.</string>
+
+    <string name="hint_new_pin">New PIN</string>
+    <string name="hint_confirm_pin">Confirm PIN</string>
+    <string name="pin_hint">Use 4–6 digits. Avoid obvious combinations like 1234.</string>
+
+    <string name="btn_save_pin">Save PIN</string>
+
+    <string name="pin_setup_success">PIN saved successfully</string>
+    <string name="pin_setup_error">Failed to save PIN — please try again</string>
+
+    <string name="error_enter_pin">Please enter your PIN</string>
+    <string name="error_pin_too_short">PIN must be at least %1$d digits</string>
+    <string name="error_confirm_pin">Please confirm your PIN</string>
+    <string name="error_pin_mismatch">PINs do not match — please try again</string>
+    <string name="error_wrong_pin">Incorrect PIN. %1$d attempt(s) remaining before lockout</string>
+
+    <string name="setting_app_lock">App Lock</string>
+    <string name="setting_app_lock_sub">Require authentication to open the app</string>
+    <string name="setting_biometric">Biometric Unlock</string>
+    <string name="setting_biometric_sub">Use fingerprint or face recognition</string>
+    <string name="setting_auto_lock">Auto-lock after</string>
+    <string name="setting_setup_pin">Set Up PIN</string>
+    <string name="setting_setup_pin_sub">Create a PIN to enable app lock</string>
+    <string name="setting_change_pin">Change PIN</string>
+    <string name="setting_remove_pin">Remove PIN</string>
+    <string name="setting_remove_pin_sub">This will also disable app lock</string>
+
+    <string name="remove_pin_title">Remove PIN</string>
+    <string name="remove_pin_message">Removing your PIN will disable app lock and biometric unlock. Your financial data will no longer be protected. Continue?</string>
+    <string name="remove">Remove</string>
+    <string name="pin_removed">PIN removed and app lock disabled</string>
+</resources>

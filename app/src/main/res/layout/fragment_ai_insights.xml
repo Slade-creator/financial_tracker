@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ── IDLE STATE (before generation) ── -->
+        <LinearLayout
+            android:id="@+id/layoutIdle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!-- Hero card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/primary"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AI Financial Insights"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Generate a professional AI-powered report with executive summary, key insights, and actionable recommendations tailored to your financial data."
+                        android:textSize="13sp"
+                        android:textColor="#BBDEFB"
+                        android:lineSpacingMultiplier="1.4"
+                        android:layout_marginBottom="20dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnGenerateInsights"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:text="Generate AI Report"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary"
+                        app:backgroundTint="@android:color/white"
+                        app:cornerRadius="10dp"
+                        app:icon="@android:drawable/ic_menu_send"
+                        app:iconGravity="textStart" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Info chips row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🤖"
+                            android:textSize="24sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Input"
+                            android:textSize="10sp"
+                            android:textColor="#757575" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📄"
+                            android:textSize="24sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PDF Report"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Output"
+                            android:textSize="10sp"
+                            android:textColor="#757575" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚡"
+                            android:textSize="24sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5–15 sec"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"
+                            android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Generation"
+                            android:textSize="10sp"
+                            android:textColor="#757575" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Transaction count info card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#E8F5E9">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="14dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_dialog_info"
+                        android:layout_marginEnd="10dp"
+                        app:tint="#388E3C" />
+                    <TextView
+                        android:id="@+id/tvTransactionCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Loading transactions..."
+                        android:textSize="13sp"
+                        android:textColor="#2E7D32" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- ── LOADING STATE ── -->
+        <LinearLayout
+            android:id="@+id/layoutLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="48dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:indeterminateTint="@color/primary"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:id="@+id/tvLoadingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analyzing your financial data..."
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This usually takes 5–15 seconds"
+                android:textSize="13sp"
+                android:textColor="#757575"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- ── RESULTS STATE ── -->
+        <LinearLayout
+            android:id="@+id/layoutResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Executive Summary card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/primary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Executive Summary"
+                        android:textSize="12sp"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1"
+                        android:textColor="#BBDEFB"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvExecutiveSummary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14sp"
+                        android:textColor="@android:color/white"
+                        android:lineSpacingMultiplier="1.5" />
+
+                    <TextView
+                        android:id="@+id/tvGeneratedAt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="11sp"
+                        android:textColor="#BBDEFB"
+                        android:layout_marginTop="12dp" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Key Insights card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔍"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Key Insights"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121" />
+                    </LinearLayout>
+
+                    <!-- Insight items injected programmatically here -->
+                    <LinearLayout
+                        android:id="@+id/layoutInsightItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Recommendations card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💡"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recommendations"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutRecommendationItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Concerns card (conditionally shown) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardConcerns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="#FFF3E0"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚠️"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Concerns"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#E65100" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvConcerns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13sp"
+                        android:textColor="#BF360C"
+                        android:lineSpacingMultiplier="1.4" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Action buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewPdf"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="View PDF"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp"
+                    app:icon="@android:drawable/ic_menu_view" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShareReport"
+                    android:layout_width="0dp"
+                    android:layout_height="52dp"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:icon="@android:drawable/ic_menu_share" />
+
+            </LinearLayout>
+
+            <!-- Regenerate button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegenerate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Generate New Report"
+                android:textSize="14sp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:icon="@android:drawable/ic_popup_sync" />
+
+        </LinearLayout>
+
+        <!-- ── ERROR STATE ── -->
+        <LinearLayout
+            android:id="@+id/layoutError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❌"
+                android:textSize="48sp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Report Generation Failed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tvErrorMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="13sp"
+                android:textColor="#757575"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.4"
+                android:layout_marginBottom="24dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:text="Try Again"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
