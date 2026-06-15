@@ -1,0 +1,159 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+    ═══════════════════════════════════════════════════════════════════════
+    Theme.FinancialTracker — "The Blade" Design System
+    OLED-First Dark theme optimized for AMOLED screens.
+
+    COLOR REFERENCE:
+      Foundation (bg)     : #000000  — True black, blends with hardware
+      Glass Surface       : #1AFFFFFF — 10% white alpha, card fill
+      Glass Stroke        : #26FFFFFF — 15% white alpha, card border
+      Accent / Primary    : #6366F1  — Indigo (interactive elements)
+      Income Glow         : #00FFD1  — Neon mint
+      Expense Glow        : #FF3B30  — Vivid crimson
+      Text Primary        : #FFFFFF
+      Text Secondary      : #94A3B8  — Muted slate
+    ═══════════════════════════════════════════════════════════════════════
+    -->
+
+    <style name="Theme.FinancialTracker" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- ── Primary brand (Indigo) ──────────────────────────────── -->
+        <item name="colorPrimary">#6366F1</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#312E81</item>
+        <item name="colorOnPrimaryContainer">#C7D2FE</item>
+
+        <!-- ── Secondary (Muted slate) ───────────────────────────────── -->
+        <item name="colorSecondary">#94A3B8</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorSecondaryContainer">#1E293B</item>
+        <item name="colorOnSecondaryContainer">#CBD5E1</item>
+
+        <!-- ── Tertiary (Neon mint — income highlights) ─────────────── -->
+        <item name="colorTertiary">#00FFD1</item>
+        <item name="colorOnTertiary">#000000</item>
+        <item name="colorTertiaryContainer">#003D33</item>
+        <item name="colorOnTertiaryContainer">#00FFD1</item>
+
+        <!-- ── Error (Vivid crimson — expense / alerts) ──────────────── -->
+        <item name="colorError">#FF3B30</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorErrorContainer">#3D0D09</item>
+        <item name="colorOnErrorContainer">#FF8A80</item>
+
+        <!-- ── Background and Surface — True Black ───────────────────── -->
+        <item name="android:colorBackground">#000000</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="colorSurface">#000000</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorSurfaceVariant">#0D0D0D</item>
+        <item name="colorOnSurfaceVariant">#94A3B8</item>
+        <item name="colorSurfaceContainer">#111111</item>
+        <item name="colorSurfaceContainerHigh">#1A1A1A</item>
+        <item name="colorSurfaceContainerHighest">#222222</item>
+
+        <!-- ── Outline ────────────────────────────────────────────────── -->
+        <item name="colorOutline">#26FFFFFF</item>
+        <item name="colorOutlineVariant">#1AFFFFFF</item>
+
+        <!-- ── System bars: transparent for edge-to-edge ─────────────── -->
+        <!-- Reinforce in Activity.onCreate():                              -->
+        <!--   WindowCompat.setDecorFitsSystemWindows(getWindow(), false)  -->
+        <!--   getWindow().setStatusBarColor(Color.TRANSPARENT)            -->
+        <!--   getWindow().setNavigationBarColor(Color.TRANSPARENT)        -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+
+        <!-- ── Typography ─────────────────────────────────────────────── -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <!-- ── Shape tokens ───────────────────────────────────────────── -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeSmall.FinancialTracker</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeMedium.FinancialTracker</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeLarge.FinancialTracker</item>
+
+        <!-- ── Component overrides ────────────────────────────────────── -->
+        <item name="floatingActionButtonStyle">@style/FAB.FinancialTracker</item>
+        <item name="bottomNavigationStyle">@style/BottomNav.FinancialTracker</item>
+        <item name="materialCardViewStyle">@style/CardView.FinancialTracker</item>
+        <item name="chipStyle">@style/Chip.FinancialTracker</item>
+        <item name="textInputStyle">@style/Input.FinancialTracker</item>
+
+    </style>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- SHAPE APPEARANCES                                                   -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+
+    <style name="ShapeSmall.FinancialTracker" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeMedium.FinancialTracker" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeLarge.FinancialTracker" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- COMPONENT STYLE OVERRIDES                                           -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+
+    <style name="FAB.FinancialTracker" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">#6366F1</item>
+        <item name="tint">#FFFFFF</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+    <style name="BottomNav.FinancialTracker" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="itemIconTint">@color/nav_item_color</item>
+        <item name="itemTextColor">@color/nav_item_color</item>
+        <item name="itemActiveIndicatorStyle">@style/NavIndicator.FinancialTracker</item>
+    </style>
+
+    <style name="NavIndicator.FinancialTracker" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#206366F1</item>
+        <item name="shapeAppearance">@style/ShapeMedium.FinancialTracker</item>
+    </style>
+
+    <style name="CardView.FinancialTracker" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="shapeAppearance">@style/ShapeLarge.FinancialTracker</item>
+    </style>
+
+    <style name="Chip.FinancialTracker" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">#1AFFFFFF</item>
+        <item name="chipStrokeColor">#26FFFFFF</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">#CCFFFFFF</item>
+        <item name="closeIconTint">#80FFFFFF</item>
+    </style>
+
+    <style name="Input.FinancialTracker" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">#0DFFFFFF</item>
+        <item name="boxStrokeColor">#26FFFFFF</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">#80FFFFFF</item>
+        <item name="android:textColorHint">#4DFFFFFF</item>
+    </style>
+
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <!-- SPLASH SCREEN (avoids white flash on cold start)                   -->
+    <!-- ══════════════════════════════════════════════════════════════════ -->
+    <style name="Theme.FinancialTracker.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#000000</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.FinancialTracker</item>
+    </style>
+
+</resources>

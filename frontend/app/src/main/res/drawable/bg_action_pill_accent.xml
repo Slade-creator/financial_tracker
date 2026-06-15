@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/bg_action_pill_accent.xml — indigo fill for Add button -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#6366F1" />
+    <corners android:radius="18dp" />
+</shape>

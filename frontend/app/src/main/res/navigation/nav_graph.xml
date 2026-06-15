@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_dashboard">
+
+    <!-- ── Global actions (bottom nav — reachable from anywhere) ──── -->
+    <action
+        android:id="@+id/action_global_dashboard"
+        app:destination="@id/nav_dashboard"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_dashboard"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_global_members"
+        app:destination="@id/nav_members"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_dashboard"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_global_approvals"
+        app:destination="@id/nav_approvals"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_dashboard"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_global_reports"
+        app:destination="@id/nav_reports"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_dashboard"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_global_settings"
+        app:destination="@id/nav_settings"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_dashboard"
+        app:popUpToInclusive="false" />
+
+    <!-- ── Dashboard ──────────────────────────────────────────────── -->
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.studentassoc.financialtracker.View.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <!-- ── Members ────────────────────────────────────────────────── -->
+    <fragment
+        android:id="@+id/nav_members"
+        android:name="com.studentassoc.financialtracker.View.MembersFragment"
+        android:label="Members"
+        tools:layout="@layout/fragment_members" />
+
+    <!-- ── Approvals ──────────────────────────────────────────────── -->
+    <fragment
+        android:id="@+id/nav_approvals"
+        android:name="com.studentassoc.financialtracker.View.ApprovalsFragment"
+        android:label="Approvals"
+        tools:layout="@layout/fragment_approvals" />
+
+    <!-- ── Reports (hosts Weekly, Term, AI Insights tabs + Export) ── -->
+    <fragment
+        android:id="@+id/nav_reports"
+        android:name="com.studentassoc.financialtracker.View.ReportsFragment"
+        android:label="Reports"
+        tools:layout="@layout/fragment_reports" />
+
+    <!-- ── Settings (hosts Backup row + other preferences) ───────── -->
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.studentassoc.financialtracker.View.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+
+        <!-- Backup is reached by tapping the row inside Settings -->
+        <action
+            android:id="@+id/action_settings_to_backup"
+            app:destination="@id/nav_backup"
+            app:launchSingleTop="true" />
+
+    </fragment>
+
+    <!-- ── Backup (child of Settings, not in bottom nav) ─────────── -->
+    <fragment
+        android:id="@+id/nav_backup"
+        android:name="com.studentassoc.financialtracker.View.BackupFragment"
+        android:label="Backup &amp; Sync"
+        tools:layout="@layout/fragment_backup" />
+
+    <!-- ── AI Insights (child of Reports via ViewPager, not nav) ─── -->
+    <fragment
+        android:id="@+id/nav_ai_insights"
+        android:name="com.studentassoc.financialtracker.View.AIInsightsFragment"
+        android:label="AI Insights"
+        tools:layout="@layout/fragment_ai_insights" />
+
+    <!-- ── Export (opened as BottomSheet from Reports toolbar) ───── -->
+    <fragment
+        android:id="@+id/nav_export"
+        android:name="com.studentassoc.financialtracker.View.ExportBottomSheet"
+        android:label="Export"
+        tools:layout="@layout/fragment_export" />
+
+</navigation>

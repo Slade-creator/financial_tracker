@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/bg_pill_expense.xml — Crimson tinted pill for expense stat -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#0DFF3B30" />
+    <corners android:radius="16dp" />
+    <stroke android:width="1dp" android:color="#26FF3B30" />
+</shape>

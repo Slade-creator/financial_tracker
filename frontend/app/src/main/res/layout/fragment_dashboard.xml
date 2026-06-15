@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:fitsSystemWindows="false">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:id="@+id/layoutDashboardRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="120dp">
+
+            <RelativeLayout
+                android:id="@+id/layoutHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutHeaderText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ICTAZ MU CHAPTER"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.12"
+                        android:textColor="#4DFFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:paddingBottom="2dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Treasury"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                </LinearLayout>
+
+                <!-- Settings icon — glass pill -->
+                <ImageView
+                    android:id="@+id/ivSettings"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_settings"
+                    android:background="@drawable/bg_glass_pill"
+                    android:padding="10dp"
+                    android:contentDescription="Settings"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:tint="#CCFFFFFF"/>
+
+            </RelativeLayout>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- HERO BALANCE CARD                                        -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/bg_glass_card"
+                android:layout_marginBottom="12dp">
+
+                <!-- Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CURRENT BALANCE"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.12"
+                    android:textColor="#4DFFFFFF"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:paddingBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="bottom"
+                    android:paddingBottom="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="K"
+                        android:textSize="20sp"
+                        android:textColor="#4DFFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="2dp"/>
+
+                    <TextView
+                        android:id="@+id/tvCurrentBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00"
+                        android:textSize="52sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:maxLines="1"
+                        tools:text="1,176.00"/>
+                </LinearLayout>
+
+                <!-- Hairline divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#12FFFFFF"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Income pill -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/bg_pill_income"
+                        android:layout_marginEnd="6dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="4dp">
+
+                            <View
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_dot_income"
+                                android:layout_marginEnd="6dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="INCOME"
+                                android:textSize="10sp"
+                                android:letterSpacing="0.10"
+                                android:textColor="#8000FFD1"
+                                android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalIncome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K0.00"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textColor="#00FFD1"
+                            android:fontFamily="@font/plus_jakarta_sans_bold"
+                            android:maxLines="1"
+                            android:ellipsize="none"
+                            tools:text="K2,587.00"/>
+                    </LinearLayout>
+
+                    <!-- Expense pill -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/bg_pill_expense"
+                        android:layout_marginStart="6dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="4dp">
+
+                            <View
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/bg_dot_expense"
+                                android:layout_marginEnd="6dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="EXPENSES"
+                                android:textSize="10sp"
+                                android:letterSpacing="0.10"
+                                android:textColor="#80FF3B30"
+                                android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalExpenses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="K0.00"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:textColor="#FF3B30"
+                            android:fontFamily="@font/plus_jakarta_sans_bold"
+                            android:maxLines="1"
+                            android:ellipsize="none"
+                            tools:text="K1,411.00"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:weightSum="3">
+
+                <!-- Add -->
+                <LinearLayout
+                    android:id="@+id/btnAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="@drawable/bg_action_pill_accent"
+                    android:layout_marginEnd="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_input_add"
+                        android:contentDescription="Add"
+                        app:tint="#FFFFFF"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                </LinearLayout>
+
+                <!-- Export -->
+                <LinearLayout
+                    android:id="@+id/btnExport"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="@drawable/bg_glass_card_sm"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_export"
+                        android:contentDescription="Export"
+                        app:tint="#CCFFFFFF"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Export"
+                        android:textSize="12sp"
+                        android:textColor="#CCFFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                </LinearLayout>
+
+                <!-- Filter -->
+                <LinearLayout
+                    android:id="@+id/btnFilter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="@drawable/bg_glass_card_sm"
+                    android:layout_marginStart="6dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_filter"
+                        android:contentDescription="Filter"
+                        app:tint="#CCFFFFFF"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Filter"
+                        android:textSize="12sp"
+                        android:textColor="#CCFFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- ACTIVE FILTERS CHIP ROW (hidden until filter active)    -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <LinearLayout
+                android:id="@+id/cardActiveFilters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/bg_glass_card_sm"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFilteredLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTIVE FILTERS"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.10"
+                    android:textColor="#4DFFFFFF"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:paddingBottom="8dp"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupActiveFilters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleLine="false"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- RECENT TRANSACTIONS CARD                                 -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_glass_card">
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="12dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="RECENT TRANSACTIONS"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.10"
+                        android:textColor="#4DFFFFFF"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"/>
+
+                    <TextView
+                        android:id="@+id/tvTransactionCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 transactions"
+                        android:textSize="11sp"
+                        android:textColor="#4DFFFFFF"
+                        android:background="@drawable/bg_count_badge"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginEnd="8dp"
+                        tools:text="15 transactions"/>
+
+                    <TextView
+                        android:id="@+id/tvViewAllTransactions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View All"
+                        android:textSize="13sp"
+                        android:textColor="#6366F1"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="4dp"/>
+                </LinearLayout>
+
+                <!-- Hairline divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#0AFFFFFF"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewRecentTransactions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="8dp"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_transaction"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
