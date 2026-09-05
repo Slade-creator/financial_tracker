@@ -6,26 +6,46 @@
 
 A full-stack financial management system with an **Android client** (Java) and **Python/FastAPI backend** for AI-powered report generation. All transaction data lives on-device using Room (SQLite); the backend is only used for generating intelligent financial reports via OpenRouter AI.
 
+## Developer Documentation
+
+Full documentation lives in [`docs/`](./docs/):
+
+| Document | Description |
+|----------|-------------|
+| [Architecture](./docs/ARCHITECTURE.md) | System diagrams, Android MVVM layering, backend request flow |
+| [Data Model](./docs/DATA_MODEL.md) | Room schema (Chen ER notation), entities, DAO queries |
+| [API Reference](./docs/API.md) | Backend endpoints, wire format, configuration |
+| [Screens & Navigation](./docs/SCREENS.md) | Every screen, nav graph walkthrough, UI conventions |
+| [Backup & Sync](./docs/BACKUP.md) | Google Drive backup, incremental diff/merge, auto-backup |
+| [Security](./docs/SECURITY.md) | App lock, PIN storage (Keystore), session timeout |
+| [Contributing](./docs/CONTRIBUTING.md) | Setup (uv for backend), conventions, and workflow for new developers |
+
 ## Architecture
 
+Offline-first: the Android app owns all data in a local Room database. The stateless FastAPI backend only exists to generate AI-powered PDF reports.
+
+```mermaid
+flowchart TB
+    subgraph android["Android App (Java)"]
+        DB[("Room DB (SQLite)")]
+        WM["WorkManager"]
+        DRIVE["Google Drive Backup/Sync"]
+        RETRO["Retrofit API client"]
+    end
+
+    subgraph backend["FastAPI Backend (Python)"]
+        ANA["Analytics Service"]
+        AI["OpenRouter AI"]
+        PDF["ReportLab PDF Gen"]
+    end
+
+    DB -- "POST /api/generate-report" --> RETRO --> ANA
+    ANA --> AI
+    ANA --> PDF
+    WM --> DRIVE
 ```
-┌──────────────────────────────────────────────────┐
-│  Android App (Java)                              │
-│  ┌──────────┐  ┌──────────┐  ┌───────────────┐  │
-│  │ Room DB  │  │ Work-    │  │ Google Drive  │  │
-│  │ (SQLite) │  │ Manager  │  │ Backup/Sync   │  │
-│  └──────────┘  └──────────┘  └───────────────┘  │
-│       │                                          │
-│       ▼ POST /api/generate-report                │
-│  ┌──────────────────────────────────────────┐    │
-│  │ FastAPI Backend (Python)                 │    │
-│  │  ┌─────────┐ ┌──────────┐ ┌──────────┐  │    │
-│  │  │Analytics│ │OpenRouter│ │ ReportLab│  │    │
-│  │  │Service  │ │ AI       │ │ PDF Gen  │  │    │
-│  │  └─────────┘ └──────────┘ └──────────┘  │    │
-│  └──────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────┘
-```
+
+Full diagrams and layer breakdowns: [Architecture](./docs/ARCHITECTURE.md) · [Data Model](./docs/DATA_MODEL.md) · [Backup & Sync](./docs/BACKUP.md) · [Security](./docs/SECURITY.md)
 
 ### Key Design Decisions
 
@@ -39,12 +59,12 @@ A full-stack financial management system with an **Android client** (Java) and *
 ### Backend
 | Component | Technology |
 |-----------|-----------|
-| Language | Python 3.14 |
+| Language | Python 3.14 (managed with [uv](https://docs.astral.sh/uv/)) |
 | Framework | FastAPI |
 | Server | Uvicorn |
 | PDF Generation | ReportLab |
-| AI Integration | OpenRouter (Qwen 3 70B) |
-| Validation | Pydantic |
+| AI Integration | OpenRouter (default model: `qwen/qwen3-vl-30b-a3b-thinking`) |
+| Validation | Pydantic / pydantic-settings |
 
 ### Frontend (Android)
 | Component | Technology |
@@ -72,31 +92,65 @@ A full-stack financial management system with an **Android client** (Java) and *
 
 ## Setup
 
-### Backend
+### Backend (uv)
 ```bash
+# Install uv (Windows PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
 cd backend
-python -m venv .venv
-.venv\Scripts\activate      # Windows
-# source .venv/bin/activate # Linux/Mac
-pip install -r requirements.txt
-cp .env.example .env        # Add your OpenRouter API key
-uvicorn main:app --reload   # http://localhost:8000
+uv sync                      # creates .venv and installs deps from uv.lock
+cp .env.example .env         # Add your OpenRouter API key
+uv run uvicorn main:app --reload   # http://localhost:8000
 ```
 
 ### Android App
 1. Open `frontend/` in Android Studio
 2. Sync Gradle (AGP 8.12.3)
-3. Update `BASE_URL` in `ReportApiService.java` to your backend URL
+3. Point the app at your backend: add `BACKEND_BASE_URL=https://your-backend.example.com/`
+   to `frontend/local.properties` (create the entry if it doesn't exist — the
+   file is not committed). When unset, the app defaults to
+   `http://10.0.2.2:8000/` (the emulator's alias for your machine's
+   `localhost`). The Google Drive client ID is configured the same way via
+   `GOOGLE_DRIVE_CLIENT_ID` in `local.properties`. Both values are injected as
+   `BuildConfig` fields by `app/build.gradle.kts` — no Java source changes needed.
 4. Run on device/emulator (minSdk 24)
 
 ## Environment Variables (Backend)
 
-| Variable | Description |
-|----------|-------------|
-| `OPENROUTER_API_KEY` | Your OpenRouter API key |
-| `AI_MODEL` | Model to use (default: `qwen/qwen3-vl-30b-a3b-thinking`) |
-| `DEBUG` | Enable debug logging |
-| `REPORTS_DIR` | PDF output directory (default: `reports/`) |
+Configured in `backend/.env` (see `.env.example`). Full reference in the [API docs](./docs/API.md#configuration).
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OPENROUTER_API_KEY` | *(required)* | Your OpenRouter API key (`sk-or-v1-...`) |
+| `AI_MODEL` | `qwen/qwen3-vl-30b-a3b-thinking` | OpenRouter model slug |
+| `HTTP_REFERER` | *(empty)* | Sent to OpenRouter for attribution; omitted when empty |
+| `DEBUG` | `False` | Debug logging + uvicorn auto-reload |
+| `HOST` / `PORT` | `0.0.0.0` / `8000` | Bind address for `python main.py` |
+| `REPORTS_DIR` | `reports` | PDF output directory |
+| `ALLOWED_ORIGINS` | `[]` | CORS origins (JSON array in `.env`) — empty means no cross-origin browser access |
+| `MAX_TRANSACTIONS_PER_REQUEST` | `500` | Cap on transactions per report request |
+
+## Tests
+
+```bash
+# Backend
+cd backend
+uv run pytest
+
+# Android
+cd frontend
+.\gradlew.bat test
+```
+
+## Project Layout
+
+```
+financialtracker/
+├── frontend/     ← Android app (Java, Room, Retrofit, WorkManager)
+├── backend/      ← FastAPI AI report service (Python, uv-managed)
+├── docs/         ← Developer documentation (Mermaid diagrams)
+└── reports/      ← Generated PDFs (runtime output)
+```
 
 ## License
 

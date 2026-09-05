@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, status, HTTPException
@@ -86,16 +87,34 @@ async def health_check():
 
 @router.get("/reports/{filename}")
 async def download_report(filename: str):
-
     settings = get_settings()
-    import os
+
+    # Validate BEFORE joining with the reports dir: only accept a plain
+    # filename ending in ".pdf" (no path separators, no parent-directory
+    # components) so traversal like "../secret.pdf" or "..%2Fsecret.pdf"
+    # is rejected outright.
+    if (
+        not filename
+        or filename != os.path.basename(filename)
+        or ".." in filename
+        or not filename.endswith(".pdf")
+    ):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Report not found")
+
     filepath = os.path.join(settings.reports_dir, filename)
 
-    if not os.path.exists(filepath) or not filepath.endswith(".pdf"):
+    if not os.path.isfile(filepath):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Report not found")
+
+    # Defence in depth: after joining, resolve both paths and confirm the
+    # requested file really lives inside the reports directory.
+    real = os.path.realpath(filepath)
+    reports_root = os.path.realpath(settings.reports_dir)
+    if not real.startswith(reports_root + os.sep):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Report not found")
 
     return FileResponse(
-        path=filepath,
+        path=real,
         media_type="application/pdf",
         filename=filename,
     )

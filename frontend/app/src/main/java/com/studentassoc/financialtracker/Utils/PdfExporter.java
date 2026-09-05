@@ -357,8 +357,6 @@ public class PdfExporter {
     }
 
     private static String generatePdfFileName() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HHmmss", Locale.US);
-        String timestamp = sdf.format(new Date());
-        return "financial_report_" + timestamp + ".pdf";
+        return "financial_report_" + Utils.fileTimestamp() + ".pdf";
     }
 }

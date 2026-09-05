@@ -1,7 +1,6 @@
 package com.studentassoc.financialtracker.View;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
@@ -267,8 +267,8 @@ public class DashboardFragment extends Fragment implements TransactionAdapter.On
         tvDetailUpdated.setText(Utils.formatDateForDisplay(transaction.getUpdatedAt()));
 
         int color = transaction.getTransactionType().equals("INCOME") ?
-                Color.parseColor("#00FFD1") :
-                Color.parseColor("#FF3B30");
+                ContextCompat.getColor(requireContext(), R.color.colorIncome) :
+                ContextCompat.getColor(requireContext(), R.color.colorExpense);
         tvDetailType.setTextColor(color);
         tvDetailAmount.setTextColor(color);
 
@@ -301,7 +301,7 @@ public class DashboardFragment extends Fragment implements TransactionAdapter.On
 
         Button editButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button deleteButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        deleteButton.setTextColor(Color.parseColor("#FF3B30"));
+        deleteButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorExpense));
     }
 
     private void confirmDeleteTransaction(Transaction transaction) {
@@ -348,8 +348,8 @@ public class DashboardFragment extends Fragment implements TransactionAdapter.On
 
                 tvCurrentBalance.setTextColor(
                         balance >= 0
-                                ? Color.parseColor("#00FFD1")
-                                : Color.parseColor("#FF3B30")
+                                ? ContextCompat.getColor(requireContext(), R.color.colorIncome)
+                                : ContextCompat.getColor(requireContext(), R.color.colorExpense)
                 );
             }
         });

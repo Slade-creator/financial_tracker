@@ -1,7 +1,8 @@
 # ICTAZ MU Financial Tracker — AI Backend
 
 FastAPI backend for the Android financial tracker app.  
-Generates AI-powered PDF reports using **Llama 3 70B** via OpenRouter.
+Generates AI-powered PDF reports via OpenRouter (model configurable via
+`AI_MODEL`, default `qwen/qwen3-vl-30b-a3b-thinking`).
 
 ---
 
@@ -10,7 +11,7 @@ Generates AI-powered PDF reports using **Llama 3 70B** via OpenRouter.
 | Layer      | Technology                        |
 |------------|-----------------------------------|
 | API        | FastAPI + Uvicorn                 |
-| AI         | Llama 3 70B via OpenRouter        |
+| AI         | OpenRouter (Qwen by default)      |
 | PDF        | ReportLab                         |
 | Hosting    | Render.com (free tier)            |
 | Android    | Retrofit 2 + OkHttp               |
@@ -19,26 +20,40 @@ Generates AI-powered PDF reports using **Llama 3 70B** via OpenRouter.
 
 ## Local Setup
 
+The backend uses **[uv](https://docs.astral.sh/uv/)** for dependency management. `pyproject.toml` declares dependencies; `uv.lock` pins exact versions.
+
 ```bash
-# 1. Enter the project
+# 1. Install uv (skip if already installed)
+#    Windows (PowerShell):
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+#    macOS/Linux:
+#    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 2. Enter the project
 cd backend
 
-# 2. Create virtual environment
-python3 -m venv venv
-source venv/bin/activate       # Windows: venv\Scripts\activate
+# 3. Install Python 3.14 (pinned in .python-version) if missing
+uv python install
 
-# 3. Install dependencies
-pip install -r requirements.txt
+# 4. Create .venv and install all dependencies from uv.lock (incl. dev group)
+uv sync
 
-# 4. Configure environment
+# 5. Configure environment
 cp .env.example .env
 # Edit .env and paste your OpenRouter key
 
-# 5. Run
-uvicorn main:app --reload
+# 6. Run
+uv run uvicorn main:app --reload
 # → http://localhost:8000
 # → http://localhost:8000/docs  (Swagger UI)
+
+# Tests
+uv run pytest
 ```
+
+Useful commands: `uv add <pkg>` / `uv add --dev <pkg>` (adds to `pyproject.toml` **and** `uv.lock`), `uv sync --no-dev` (production install), `uv lock --upgrade` (re-resolve versions).
+
+> ⚠️ Avoid `pip install` directly into `.venv` — it desyncs `uv.lock`. To reset: delete `.venv` and run `uv sync`.
 
 ---
 
@@ -49,7 +64,7 @@ uvicorn main:app --reload
 3. Copy the key (starts with `sk-or-v1-...`)
 4. Paste it into `.env` as `OPENROUTER_API_KEY`
 
-Llama 3 70B has a **free tier** — no credit card needed to start.
+Many models on OpenRouter have a **free tier** — no credit card needed to start.
 
 ---
 
@@ -70,22 +85,19 @@ Your live URL will be: `https://your-app-name.onrender.com`
 
 ## Android Wiring
 
-After deploying, update **one line** in `ReportApiService.java`:
+The backend URL is injected into the app as a `BuildConfig` field. Add it to
+`frontend/local.properties` (not committed):
 
-```java
-// Development (emulator)
-private static final String BASE_URL = "http://10.0.2.2:8000";
+```properties
+# Development (emulator) — this is the default if omitted
+BACKEND_BASE_URL=http://10.0.2.2:8000/
 
-// Production (after Render deploy)
-private static final String BASE_URL = "https://your-app-name.onrender.com";
+# Production (after Render deploy)
+BACKEND_BASE_URL=https://your-app-name.onrender.com/
 ```
 
-> **Tip:** Use a `BuildConfig` flag to switch automatically:
-> ```java
-> private static final String BASE_URL = BuildConfig.DEBUG
->     ? "http://10.0.2.2:8000"
->     : "https://your-app-name.onrender.com";
-> ```
+No Java source changes are needed; the value is read by
+`ReportApiService.java` via `BuildConfig.BACKEND_BASE_URL`.
 
 ---
 
@@ -159,7 +171,7 @@ backend/
 │   └── report.py         ← Mirrors ReportRequest/Response/AIInsights
 ├── services/
 │   ├── analytics.py      ← Data crunching + AI prompt builder
-│   ├── ai_service.py     ← OpenRouter / Llama 3 70B call
+│   ├── ai_service.py     ← OpenRouter chat-completions call
 │   └── pdf_service.py    ← ReportLab PDF generation
 ├── routers/
 │   └── reports.py        ← /api/generate-report, /api/health
@@ -179,5 +191,6 @@ backend/
 | 100 reports/mo  | ~$0.02        | Free      | **~$0.02**  |
 | 500 reports/mo  | ~$0.10        | Free      | **~$0.10**  |
 
-Llama 3 70B on OpenRouter: ~$0.59 per 1M tokens.  
+Pricing depends on the model set in `AI_MODEL` — many OpenRouter models offer
+a free tier.  
 A typical report prompt uses ~400 tokens in + ~200 tokens out ≈ **$0.0004 per report**.

@@ -1,0 +1,42 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# ---- Android / Gradle ----
+.gradle/
+local.properties
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Project artifacts ----
+backend/reports/
+reports/

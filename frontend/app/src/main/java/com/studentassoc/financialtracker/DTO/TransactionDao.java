@@ -32,27 +32,6 @@ public interface TransactionDao {
     @Query("SELECT * FROM transactions ORDER BY transaction_date DESC")
     LiveData<List<Transaction>> getAllTransactions();
 
-    @Query("SELECT * FROM transactions WHERE id = :transactionId")
-    Transaction getTransactionById(String transactionId);
-
-    @Query("SELECT * FROM transactions WHERE transaction_type = 'INCOME' ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getIncomeTransactions();
-
-    @Query("SELECT * FROM transactions WHERE transaction_type = 'EXPENSE' ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getExpenseTransactions();
-
-    @Query("SELECT * FROM transactions WHERE category = :category ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getTransactionsCategory(String category);
-
-    @Query("SELECT * FROM transactions WHERE payment_method = :paymentMethod ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getTransactionsByPaymentMethod(String paymentMethod);
-
-    @Query("SELECT * FROM transactions WHERE transaction_date BETWEEN :startDate AND :endDate ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getTransactionsByDateRange(String startDate, String endDate);
-
-    @Query("SELECT * FROM transactions WHERE transaction_type = 'INCOME' AND member_name = :memberName ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getIncomeByMember(String memberName);
-
     @Query("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE transaction_type = 'INCOME'")
     LiveData<Integer> getTotalIncome();
 
@@ -62,32 +41,11 @@ public interface TransactionDao {
     @Query("SELECT COALESCE(SUM(CASE WHEN transaction_type = 'INCOME' THEN amount ELSE -amount END), 0) FROM transactions")
     LiveData<Integer> getCurrentBalance();
 
-    @Query("SELECT * FROM transactions WHERE is_approved = :isApproved ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getTransactionByApprovalStatus(int isApproved);
-
-    @Query("SELECT * FROM transactions WHERE member_name LIKE '%' || :searchQuery || '%' ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> searchByMemberName(String searchQuery);
-
     @Query("SELECT * FROM transactions WHERE transaction_date BETWEEN :startDate AND :endDate ORDER BY transaction_date ASC")
     LiveData<List<Transaction>> getTransactionsBetween(String startDate, String endDate);
 
     @Query("DELETE FROM transactions")
     void deleteAllTransactions();
-
-    @Query("SELECT * FROM transactions WHERE " +
-            "(:startDate IS NULL OR transaction_date >= :startDate) AND " +
-            "(:endDate IS NULL OR transaction_date <= :endDate) AND " +
-            "(:category IS NULL OR category = :category) AND " +
-            "(:paymentMethod IS NULL OR payment_method = :paymentMethod) AND " +
-            "(:approvalStatus IS NULL OR is_approved = :approvalStatus) " +
-            "ORDER BY transaction_date DESC")
-    LiveData<List<Transaction>> getFilteredTransaction(
-            String startDate,
-            String endDate,
-            String category,
-            String paymentMethod,
-            Integer approvalStatus
-    );
 
     @Query("SELECT * FROM transactions WHERE " +
             "(:startDate IS NULL OR transaction_date >= :startDate) AND " +

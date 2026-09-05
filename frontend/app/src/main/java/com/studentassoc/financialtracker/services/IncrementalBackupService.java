@@ -9,15 +9,12 @@ import com.google.gson.Gson;
 import com.studentassoc.financialtracker.Model.BackupChange;
 import com.studentassoc.financialtracker.Model.BackupMetadata;
 import com.studentassoc.financialtracker.Model.Transaction;
+import com.studentassoc.financialtracker.Utils.Utils;
 
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.UUID;
 
 public class IncrementalBackupService {
@@ -33,6 +30,12 @@ public class IncrementalBackupService {
     private final SharedPreferences prefs;
     private final Gson gson;
 
+    // Timestamp/version of the most recently built backup payload. These are
+    // only persisted via commitSnapshot() after the payload has been
+    // successfully uploaded.
+    private String lastCreatedTimestamp;
+    private int lastCreatedVersion;
+
     public IncrementalBackupService(Context context) {
         this.context = context;
         this.prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -42,32 +45,7 @@ public class IncrementalBackupService {
     public BackupChange detectChanges(List<Transaction> currentTransactions) {
         Log.d(TAG, "Detecting changes in " + currentTransactions.size() + " transactions");
 
-        BackupChange changes = new BackupChange();
-        Map<String, Transaction> lastSnapshot =  getLastSnapshot();
-        Map<String, Transaction> currentMap = new HashMap<>();
-
-        for (Transaction tx : currentTransactions) {
-            currentMap.put(tx.getId(), tx);
-        }
-
-        for (Transaction current : currentTransactions) {
-            Transaction last = lastSnapshot.get(current.getId());
-
-            if (last == null) {
-                changes.addTransaction(current);
-                Log.d(TAG, "Added transaction: " + current.getId());
-            } else if (!current.getUpdatedAt().equals(last.getUpdatedAt())) {
-                changes.modifyTransaction(current);
-                Log.d(TAG, "Modified transaction: " + current.getId());
-            }
-        }
-
-        for (String id : lastSnapshot.keySet()) {
-            if (!currentMap.containsKey(id)) {
-                changes.deleteTransaction(id);
-                Log.d(TAG, "Deleted transaction: " + id);
-            }
-        }
+        BackupChange changes = BackupLogic.detectChanges(currentTransactions, getLastSnapshot());
 
         Log.d(TAG, "Change detection complete: " + changes);
         return changes;
@@ -78,22 +56,18 @@ public class IncrementalBackupService {
 
         BackupMetadata metadata = new BackupMetadata();
         metadata.setBackupType("FULL");
-        metadata.setTimestamp(getCurrentTimestamp());
+        metadata.setTimestamp(Utils.getCurrentTimestamp());
         metadata.setDeviceId(getDeviceId());
         metadata.setVersion(1);
         metadata.setTransactionCount(transactions.size());
-        metadata.setLastBackupTimestamp(getCurrentTimestamp());
+        metadata.setLastBackupTimestamp(Utils.getCurrentTimestamp());
 
         Map<String, Object> backup = new HashMap<>();
-        backup.put("metadate", metadata);
-        backup.put("transaction", transactions);
+        backup.put("metadata", metadata);
+        backup.put("transactions", transactions);
 
-        saveSnapshot(transactions);
-
-        prefs.edit()
-                .putString(KEY_LAST_BACKUP_TIME, metadata.getTimestamp())
-                .putInt(KEY_BACKUP_VERSION, 1)
-                .apply();
+        lastCreatedTimestamp = metadata.getTimestamp();
+        lastCreatedVersion = 1;
 
         String json = gson.toJson(backup);
         Log.d(TAG, "Full backup created: " + json.length() + " bytes");
@@ -116,28 +90,47 @@ public class IncrementalBackupService {
 
         BackupMetadata metadata = new BackupMetadata();
         metadata.setBackupType("INCREMENTAL");
-        metadata.setTimestamp(getCurrentTimestamp());
+        metadata.setTimestamp(Utils.getCurrentTimestamp());
         metadata.setDeviceId(getDeviceId());
         metadata.setVersion(newVersion);
         metadata.setBaseVersion(currentVersion);
         metadata.setTransactionCount(changes.getTotalChangeCount());
-        metadata.setLastBackupTimestamp(getCurrentTimestamp());
+        metadata.setLastBackupTimestamp(Utils.getCurrentTimestamp());
 
         Map<String, Object> backup = new HashMap<>();
         backup.put("metadata", metadata);
         backup.put("changes", changes);
 
-        saveSnapshot(currentTransactions);
-
-        prefs.edit()
-                .putString(KEY_LAST_BACKUP_TIME, metadata.getTimestamp())
-                .putInt(KEY_BACKUP_VERSION, newVersion)
-                .apply();
+        lastCreatedTimestamp = metadata.getTimestamp();
+        lastCreatedVersion = newVersion;
 
         String json = gson.toJson(backup);
         Log.d(TAG, "Incremental backup created: " + json.length() + " bytes, version " + newVersion);
 
         return json;
+    }
+
+    /**
+     * Persists the snapshot state for a backup payload that has already been
+     * successfully uploaded to Drive. Must NOT be called before the upload
+     * succeeds — otherwise a failed upload would leave the snapshot advanced
+     * and the next incremental backup would silently skip those changes.
+     */
+    public void commitSnapshot(List<Transaction> current, String timestamp, int version) {
+        Log.d(TAG, "Committing snapshot after successful upload (version " + version + ")");
+        saveSnapshot(current);
+        prefs.edit()
+                .putString(KEY_LAST_BACKUP_TIME, timestamp)
+                .putInt(KEY_BACKUP_VERSION, version)
+                .apply();
+    }
+
+    public String getLastCreatedTimestamp() {
+        return lastCreatedTimestamp;
+    }
+
+    public int getLastCreatedVersion() {
+        return lastCreatedVersion;
     }
 
     private void saveSnapshot(List<Transaction> transactions) {
@@ -197,12 +190,6 @@ public class IncrementalBackupService {
                 .remove(KEY_BACKUP_VERSION)
                 .remove(KEY_TRANSACTION_SNAPSHOTS)
                 .apply();
-    }
-
-    private String getCurrentTimestamp() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ROOT);
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return sdf.format(new Date());
     }
 
     private String getDeviceId() {

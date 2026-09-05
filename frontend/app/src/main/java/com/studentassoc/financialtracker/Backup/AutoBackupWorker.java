@@ -35,9 +35,9 @@ public class AutoBackupWorker extends Worker {
     public Result doWork() {
         Log.d(TAG, "Auto-backup worker started");
 
-        try {
-            BackupManager backupManager = new BackupManager(getApplicationContext());
+        BackupManager backupManager = new BackupManager(getApplicationContext());
 
+        try {
             // Step 1: Check if signed in to Google Drive
             if (!backupManager.getDriveService().isSignedIn()) {
                 Log.w(TAG, "Not signed in to Google Drive, skipping auto-backup");
@@ -54,58 +54,29 @@ public class AutoBackupWorker extends Worker {
 
             Log.d(TAG, "Starting auto-backup with " + transactions.size() + " transactions");
 
-            // Step 3: Perform backup (synchronously since we're already in background)
-            boolean[] success = {false};
-            String[] errorMessage = {null};
-            String[] successMessage = {null};
+            // Step 3: Perform backup synchronously on this worker thread.
+            // No executor, no polling loop, no timeout race with shutdown().
+            BackupManager.BackupResult result = backupManager.backupBlocking(transactions);
 
-            backupManager.backup(transactions, new BackupManager.BackupCallback() {
-                @Override
-                public void onSuccess(String message) {
-                    Log.d(TAG, "Auto-backup successful: " + message);
-                    success[0] = true;
-                    successMessage[0] = message;
-                }
-
-                @Override
-                public void onError(String error) {
-                    Log.e(TAG, "Auto-backup failed: " + error);
-                    errorMessage[0] = error;
-                }
-
-                @Override
-                public void onProgress(String status) {
-                    Log.d(TAG, "Auto-backup progress: " + status);
-                }
-            });
-
-            // Step 4: Wait for backup to complete (with timeout)
-            int maxWaitSeconds = 60;
-            int waitedSeconds = 0;
-
-            while (waitedSeconds < maxWaitSeconds && !success[0] && errorMessage[0] == null) {
-                Thread.sleep(1000);
-                waitedSeconds++;
-            }
-
-            backupManager.shutdown();
-
-            // Step 5: Show notification and return result
-            if (success[0]) {
-                showNotification("Backup Successful", successMessage[0]);
+            // Step 4: Show notification and return result
+            if (result.success) {
+                Log.d(TAG, "Auto-backup successful: " + result.message);
+                showNotification("Backup Successful", result.message);
                 return Result.success();
-            } else if (errorMessage[0] != null) {
-                showNotification("Backup Failed", errorMessage[0]);
-                return Result.retry(); // Retry later
-            } else {
-                Log.w(TAG, "Auto-backup timeout");
-                return Result.retry();
             }
+
+            Log.e(TAG, "Auto-backup failed: " + result.message);
+            showNotification("Backup Failed", result.message);
+            // Retry only transient failures (e.g. network IOExceptions);
+            // non-retryable failures (e.g. expired sign-in) need user action.
+            return result.retryable ? Result.retry() : Result.failure();
 
         } catch (Exception e) {
             Log.e(TAG, "Auto-backup worker error: " + e.getMessage(), e);
             showNotification("Backup Error", e.getMessage());
             return Result.retry();
+        } finally {
+            backupManager.shutdown();
         }
     }
 

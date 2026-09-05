@@ -83,13 +83,6 @@ public class TransactionRepository {
         return currentBalance;
     }
 
-    public LiveData<List<Transaction>> getIncomeTransactions() {
-        return transactionDao.getIncomeTransactions();
-    }
-    public LiveData<List<Transaction>> getExpenseTransaction() {
-        return transactionDao.getExpenseTransactions();
-    }
-
     public LiveData<List<Transaction>> getFilteredTransaction(FilterCriteria criteria) {
         if (criteria.isEmpty()) {
             return allTransactions;
@@ -223,9 +216,6 @@ public class TransactionRepository {
 
     public  LiveData<List<Transaction>> getPendingTransactions() {
         return transactionDao.getPendingTransactions();
-    }
-    public List<Transaction> getAllTransactionSync() {
-        return transactionDao.getAllTransactionsSync();
     }
 
 }

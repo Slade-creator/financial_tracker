@@ -1,6 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
+
+// Environment-specific values live in local.properties (not committed) so
+// they can be overridden per machine without touching source code.
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
+}
+
+fun localProperty(key: String, fallback: String): String =
+    localProperties.getProperty(key)?.trim()?.trim('"')?.takeIf { it.isNotEmpty() } ?: fallback
 
 android {
     namespace = "com.studentassoc.financialtracker"
@@ -14,6 +26,28 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Injected into BuildConfig; override via local.properties:
+        //   BACKEND_BASE_URL=https://your-backend.example.com/
+        //   GOOGLE_DRIVE_CLIENT_ID=xxxxx.apps.googleusercontent.com
+        buildConfigField(
+            "String",
+            "BACKEND_BASE_URL",
+            "\"${localProperty("BACKEND_BASE_URL", "http://10.0.2.2:8000/")}\""
+        )
+        // Single source of truth for the Google web client ID: consumed both
+        // via BuildConfig.WEB_CLIENT_ID (GoogleDriveService) and as the
+        // ${webClientId} manifest placeholder (GoogleSignInOptions meta-data).
+        val webClientId = localProperty(
+            "GOOGLE_DRIVE_CLIENT_ID",
+            "506033137606-crlpo0aet0h9r40k529vgq7716pmgg40.apps.googleusercontent.com"
+        )
+        buildConfigField("String", "WEB_CLIENT_ID", "\"$webClientId\"")
+        manifestPlaceholders["webClientId"] = webClientId
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -90,6 +124,7 @@ dependencies {
 
     implementation(libs.google.auth.library.oauth2.http)
     implementation(libs.androidx.biometric)
+    implementation(libs.androidx.security.crypto)
 
     implementation(libs.androidx.core.splashscreen)
 }

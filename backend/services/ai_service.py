@@ -16,9 +16,10 @@ async def generate_insights(prompt: str) -> AIInsights:
     headers = {
         "Authorization": f"Bearer {settings.openrouter_api_key}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://ictaz-mu-tracker.onrender.com",
         "X-Title": "ICTAZ MU Financial Tracker",
     }
+    if settings.http_referer:
+        headers["HTTP-Referer"] = settings.http_referer
 
     payload = {
         "model": settings.ai_model,

@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -122,9 +120,7 @@ public class CsvExporter {
     }
 
     private static String generateFileName() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HHmmss", Locale.US);
-        String timestamp = sdf.format(new Date());
-        return "transactions_" + timestamp + ".csv";
+        return "transactions_" + Utils.fileTimestamp() + ".csv";
     }
 
     public static Uri exportWithSummary(Context context, List<Transaction> transactions,

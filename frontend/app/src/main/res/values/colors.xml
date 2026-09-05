@@ -10,4 +10,6 @@
     <color name="primary">#667eea</color>
     <color name="primary_dark">#764ba2</color>
     <color name="accent">#27ae60</color>
+    <color name="colorIncome">#00FFD1</color>
+    <color name="colorExpense">#FF3B30</color>
 </resources>

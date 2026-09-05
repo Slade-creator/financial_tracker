@@ -335,45 +335,33 @@ public class ExportBottomSheet extends BottomSheetDialogFragment {
     }
 
     private String getStartDate() {
-        if (transactions == null || transactions.isEmpty()) {
-            return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String[] minMax = Utils.minMaxTransactionDate(transactions);
+        if (minMax == null) {
+            return todayDateString();
         }
-
-        // Get earliest transaction date
-        String earliest = transactions.get(0).getTransactionDate();
-        for (Transaction tx : transactions) {
-            if (tx.getTransactionDate().compareTo(earliest) < 0) {
-                earliest = tx.getTransactionDate();
-            }
-        }
-
         // Convert to simple date format
         try {
-            return earliest.substring(0, 10); // Extract YYYY-MM-DD
+            return minMax[0].substring(0, 10); // Extract YYYY-MM-DD
         } catch (Exception e) {
-            return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            return todayDateString();
         }
     }
 
     private String getEndDate() {
-        if (transactions == null || transactions.isEmpty()) {
-            return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String[] minMax = Utils.minMaxTransactionDate(transactions);
+        if (minMax == null) {
+            return todayDateString();
         }
-
-        // Get latest transaction date
-        String latest = transactions.get(0).getTransactionDate();
-        for (Transaction tx : transactions) {
-            if (tx.getTransactionDate().compareTo(latest) > 0) {
-                latest = tx.getTransactionDate();
-            }
-        }
-
         // Convert to simple date format
         try {
-            return latest.substring(0, 10); // Extract YYYY-MM-DD
+            return minMax[1].substring(0, 10); // Extract YYYY-MM-DD
         } catch (Exception e) {
-            return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            return todayDateString();
         }
+    }
+
+    private String todayDateString() {
+        return new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     }
 
 

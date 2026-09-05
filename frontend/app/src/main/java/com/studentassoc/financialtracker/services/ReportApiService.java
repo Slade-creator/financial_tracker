@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.studentassoc.financialtracker.BuildConfig;
 import com.studentassoc.financialtracker.Model.Transaction;
 
 import java.util.List;
@@ -21,7 +22,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ReportApiService {
 
     private static final String TAG = "ReportApiService";
-    private static final String BASE_URL = "https://financial-tracker-backend-841p.onrender.com";
+    // Backend URL comes from BuildConfig (set in app/build.gradle.kts from
+    // local.properties, defaulting to the emulator's host loopback).
+    private static final String BASE_URL = BuildConfig.BACKEND_BASE_URL;
 
     private static final ReportApiInterface apiInterface;
 

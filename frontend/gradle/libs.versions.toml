@@ -28,6 +28,7 @@ navigationFragment = "2.9.7"
 navigationUi = "2.9.7"
 viewpager2 = "1.1.0"
 workRuntime = "2.11.1"
+securityCrypto = "1.0.0"
 
 [libraries]
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
@@ -63,6 +64,7 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRun
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
+androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

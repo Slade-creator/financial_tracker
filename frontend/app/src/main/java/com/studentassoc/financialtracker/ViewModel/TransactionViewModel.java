@@ -94,13 +94,6 @@ public class TransactionViewModel extends AndroidViewModel {
         return currentBalance;
     }
 
-    public LiveData<List<Transaction>> getIncomeTransactions() {
-        return repository.getIncomeTransactions();
-    }
-
-    public LiveData<List<Transaction>> getExpenseTransactions() {
-        return repository.getExpenseTransaction();
-    }
     public void applyFilters(FilterCriteria criteria) {
         filterCriteria.setValue(criteria);
     }
@@ -139,37 +132,6 @@ public class TransactionViewModel extends AndroidViewModel {
 
     public LiveData<Integer> getFilteredCurrentBalance() {
         return filteredCurrentBalance;
-    }
-
-    public void filterByDateRange(String startDate, String endDate) {
-        FilterCriteria criteria = new FilterCriteria();
-        criteria.setStartDate(startDate);
-        criteria.setEndDate(endDate);
-        applyFilters(criteria);
-    }
-
-    public void filterByCategory(String category) {
-        FilterCriteria criteria = new FilterCriteria();
-        criteria.setCategory(category);
-        applyFilters(criteria);
-    }
-
-    public void filterByPaymentMethod(String paymentMethod) {
-        FilterCriteria criteria = new FilterCriteria();
-        criteria.setPaymentMethod(paymentMethod);
-        applyFilters(criteria);
-    }
-
-    public void filterByApprovalStatus(int approvalStatus) {
-        FilterCriteria criteria = new FilterCriteria();
-        criteria.setApprovalStatus(approvalStatus);
-        applyFilters(criteria);
-    }
-
-    public void searchByMemberName(String searchQuery) {
-        FilterCriteria criteria = new FilterCriteria();
-        criteria.setMemberSearchQuery(searchQuery);
-        applyFilters(criteria);
     }
 
     public LiveData<WeeklySummary> getWeeklySummary(String startDate, String endDate) {

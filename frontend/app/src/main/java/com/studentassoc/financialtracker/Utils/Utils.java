@@ -1,8 +1,11 @@
 package com.studentassoc.financialtracker.Utils;
 
+import com.studentassoc.financialtracker.Model.Transaction;
+
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.UUID;
@@ -28,6 +31,43 @@ public class Utils {
 
     public static String generateUUID() {
         return UUID.randomUUID().toString();
+    }
+
+    /**
+     * UTC timestamp for backup metadata, e.g. 2026-09-05T10:30:00Z.
+     */
+    public static String nowIsoUtc() {
+        return getCurrentTimestamp();
+    }
+
+    /**
+     * Timestamp for backup/export file names, e.g. 2026-09-05_143012.
+     */
+    public static String fileTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HHmmss", Locale.ROOT);
+        return sdf.format(new Date());
+    }
+
+    /**
+     * Returns the lexicographically smallest and largest transaction dates
+     * as {min, max}, or null if the list is null or empty.
+     */
+    public static String[] minMaxTransactionDate(List<Transaction> transactions) {
+        if (transactions == null || transactions.isEmpty()) {
+            return null;
+        }
+        String min = transactions.get(0).getTransactionDate();
+        String max = min;
+        for (Transaction tx : transactions) {
+            String date = tx.getTransactionDate();
+            if (date.compareTo(min) < 0) {
+                min = date;
+            }
+            if (date.compareTo(max) > 0) {
+                max = date;
+            }
+        }
+        return new String[]{min, max};
     }
 
     public static String getCurrentTimestamp() {

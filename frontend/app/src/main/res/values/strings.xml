@@ -85,7 +85,6 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="backup_now">Backup Now</string>
     <string name="restore_from_backup">Restore from Backup</string>
-    <string name="default_web_client_id">506033137606-bo4n1n7vqf4csb6e6elrru028jqqo9hl.apps.googleusercontent.com</string>
 
     <string name="lock_message_pin">Enter your PIN to access your financial data</string>
     <string name="lock_message_biometric">Use fingerprint or face to unlock</string>
