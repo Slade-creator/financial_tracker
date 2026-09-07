@@ -59,7 +59,7 @@ public class RestoreService {
                 Log.d(TAG, "Found " + backupFiles.size() + " backup files");
 
                 // Download and parse backups
-                List<BackupData> backups = new ArrayList<>();
+                List<BackupLogic.BackupPayload> backups = new ArrayList<>();
                 for (File file : backupFiles) {
                     try {
                         String content = driveService.downloadBackup(file.getId());
@@ -68,7 +68,7 @@ public class RestoreService {
                             Log.w(TAG, "Skipping empty file: " + file.getName());
                             continue;
                         }
-                        BackupData backup = parseBackup(file.getName(), content);
+                        BackupLogic.BackupPayload backup = parseBackup(file.getName(), content);
                         if (backup != null) {
                             backups.add(backup);
                         }

@@ -28,7 +28,7 @@ navigationFragment = "2.9.7"
 navigationUi = "2.9.7"
 viewpager2 = "1.1.0"
 workRuntime = "2.11.1"
-securityCrypto = "1.0.0"
+securityCrypto = "1.1.0-alpha06"
 
 [libraries]
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
